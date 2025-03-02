@@ -1,54 +1,181 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meus Links</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Links</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Boxicons CDN -->
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            dark: '#121212',
+            light: '#f5f5f5',
+            primary: '#8B5CF6',
+            secondary: '#7C3AED',
+            accent: '#6D28D9',
+          },
+          animation: {
+            'fade-in': 'fadeIn 0.5s ease-in-out',
+            'slide-up': 'slideUp 0.5s ease-in-out',
+            'pulse-slow': 'pulse 3s infinite',
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' },
+            },
+            slideUp: {
+              '0%': { transform: 'translateY(20px)', opacity: '0' },
+              '100%': { transform: 'translateY(0)', opacity: '1' },
+            }
+          }
         }
-        .animate-gradient {
-            background: linear-gradient(-45deg, #38536d, #45617c, #296cb9, #8e44ad);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-        }
-    </style>
+      }
+    }
+  </script>
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .link-card {
+        @apply w-full p-4 mb-4 rounded-xl transition-all duration-300 flex items-center justify-center text-center;
+      }
+      .link-card:hover {
+        @apply transform scale-105 shadow-lg;
+      }
+      .dark .link-card {
+        @apply bg-gray-800 text-white border border-gray-700;
+      }
+      .dark .link-card:hover {
+        @apply bg-gray-700 border-gray-600;
+      }
+      .light .link-card {
+        @apply bg-white text-gray-800 border border-gray-200;
+      }
+      .light .link-card:hover {
+        @apply bg-gray-50 border-gray-300;
+      }
+      .dark .text-theme {
+        @apply text-white;
+      }
+      .light .text-theme {
+        @apply text-gray-800;
+      }
+      .dark .text-theme-secondary {
+        @apply text-gray-400;
+      }
+      .light .text-theme-secondary {
+        @apply text-gray-600;
+      }
+    }
+  </style>
 </head>
-<body class="min-h-screen flex items-center justify-center p-4 animate-gradient">
-    <div class="max-w-md w-full bg-white rounded-lg shadow-xl p-8">
-        <div class="text-center mb-8">
-            <img src="./imgs/profile.webp" alt="Perfil" class="w-32 h-32 rounded-full object-cover mx-auto mb-4">
-            <h1 class="text-2xl font-bold text-gray-800">José Hernanes</h1>
-            <p class="text-gray-600">@devjoseh</p>
+<body class="dark bg-dark text-white min-h-screen transition-colors duration-300">
+  <div class="container max-w-md mx-auto px-4 py-8">
+    <div class="flex flex-col items-center justify-center animate-fade-in">
+      <!-- Profile Section -->
+      <div class="relative mb-8 group">
+        <div class="w-24 h-24 rounded-full overflow-hidden border-4 border-primary">
+          <img src="./imgs/profile.webp" alt="Profile" class="w-full h-full object-cover">
         </div>
+        <button id="theme-toggle" class="absolute -right-4 -bottom-2 bg-primary text-white p-2 rounded-full hover:bg-secondary transition-colors">
+          <i class='bx bx-sun text-xl sun hidden'></i>
+          <i class='bx bx-moon text-xl moon'></i>
+        </button>
+      </div>
+      
+      <h1 class="text-2xl font-bold mb-1 animate-slide-up text-theme" style="animation-delay: 100ms;">@devjoseh</h1>
+      <p class="text-theme-secondary mb-6 text-center animate-slide-up" style="animation-delay: 200ms;">Desenvolvedor Back-End, designer e rato de hackatons</p>
+      
+      <!-- Links Section -->
+      <div class="w-full space-y-4">
+        <a href="https://www.linkedin.com/in/devjoseh/" target="_blank" class="link-card animate-slide-up" style="animation-delay: 300ms;">
+          <i class='bx bxl-linkedin text-xl mr-3'></i>
+          LinkedIn
+        </a>
         
-        <div class="space-y-4">
-            <a href="https://www.linkedin.com/in/devjoseh/" target="_blank" class="flex items-center w-full py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition duration-300 ease-in-out transform hover:scale-105">
-                <i class="fab fa-linkedin-in w-6 mr-2 text-center text-xl"></i>
-                LinkedIn
-            </a>
-            <a href="https://github.com/devjoseh" target="_blank" class="flex items-center w-full py-3 px-4 bg-gray-700 hover:bg-gray-800 text-white font-semibold rounded-lg transition duration-300 ease-in-out transform hover:scale-105">
-                <i class="fab fa-github w-6 mr-2 text-center text-xl"></i>
-                GitHub
-            </a>
-            <a href="https://www.instagram.com/dev_joseh/" target="_blank" class="flex items-center w-full py-3 px-4 bg-pink-500 hover:bg-pink-600 text-white font-semibold rounded-lg transition duration-300 ease-in-out transform hover:scale-105">
-                <i class="fab fa-instagram w-6 mr-2 text-center text-xl"></i>
-                Instagram
-            </a>
-            <a href="https://www.youtube.com/@devjoseh" target="_blank" class="flex items-center w-full py-3 px-4 bg-red-500 hover:bg-red-600 text-white font-semibold rounded-lg transition duration-300 ease-in-out transform hover:scale-105">
-                <i class="fab fa-youtube w-6 mr-2 text-center text-xl"></i>
-                YouTube
-            </a>
-            <a href="https://www.instagram.com/educaavalia" target="_blank" class="flex items-center w-full py-3 px-4 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg transition duration-300 ease-in-out transform hover:scale-105">
-                <img src="./imgs/educaavalia.svg" alt="EducaAvalia" class="h-6 w-6 mr-4 object-contain">
-                EducaAvalia
-            </a>
-        </div>
+        <a href="https://github.com/devjoseh" target="_blank" class="link-card animate-slide-up" style="animation-delay: 400ms;">
+          <i class='bx bxl-github text-xl mr-3'></i>
+          GitHub
+        </a>
+        
+        <a href="https://www.instagram.com/dev_joseh/" target="_blank" class="link-card animate-slide-up" style="animation-delay: 500ms;">
+          <i class='bx bxl-instagram text-xl mr-3'></i>
+          Instagram
+        </a>
+        
+        <a href="https://www.youtube.com/@devjoseh" target="_blank" class="link-card animate-slide-up" style="animation-delay: 600ms;">
+          <i class='bx bxl-youtube text-xl mr-3'></i>
+          YouTube
+        </a>
+        
+        <a href="https://bit.ly/portfoliodevjoseh" target="_blank" class="link-card animate-slide-up" style="animation-delay: 700ms;">
+          <i class='bx bx-leaf text-xl mr-3'></i>
+          Portfólio
+        </a>
+
+        <a href="https://www.instagram.com/educaavalia" target="_blank" class="link-card animate-slide-up" style="animation-delay: 700ms;">
+          <img src="./imgs/educaavalia.svg" alt="EducaAvalia" class="h-6 w-6 mr-3 object-contain">
+          EducaAvalia
+        </a>
+      </div>
+      
+      <!-- Footer -->
+      <div class="mt-12 text-center text-sm text-theme-secondary animate-fade-in" style="animation-delay: 800ms;">
+        <p>© 2025 • José Hernanes (DevJoseH) <i class='bx bxs-heart text-red-500'></i></p>
+      </div>
     </div>
+  </div>
+
+  <script>
+    // Theme toggle functionality
+    const themeToggle = document.getElementById('theme-toggle');
+    const sunIcon = document.querySelector('.sun');
+    const moonIcon = document.querySelector('.moon');
+    const body = document.body;
+    
+    // Check for saved theme preference or use device preference
+    const savedTheme = localStorage.getItem('theme') || 
+      (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    
+    // Apply the saved theme
+    if (savedTheme === 'light') {
+      body.classList.remove('dark');
+      body.classList.add('light');
+      body.style.backgroundColor = '#f5f5f5';
+      moonIcon.classList.add('hidden');
+      sunIcon.classList.remove('hidden');
+    }
+    
+    // Toggle theme
+    themeToggle.addEventListener('click', () => {
+      if (body.classList.contains('dark')) {
+        body.classList.remove('dark');
+        body.classList.add('light');
+        body.style.backgroundColor = '#f5f5f5';
+        localStorage.setItem('theme', 'light');
+        moonIcon.classList.add('hidden');
+        sunIcon.classList.remove('hidden');
+      } else {
+        body.classList.remove('light');
+        body.classList.add('dark');
+        body.style.backgroundColor = '#121212';
+        localStorage.setItem('theme', 'dark');
+        sunIcon.classList.add('hidden');
+        moonIcon.classList.remove('hidden');
+      }
+    });
+    
+    // Add entrance animations with staggered delay
+    document.addEventListener('DOMContentLoaded', () => {
+      const links = document.querySelectorAll('.link-card');
+      links.forEach((link, index) => {
+        link.style.animationDelay = `${(index + 3) * 100}ms`;
+      });
+    });
+  </script>
 </body>
 </html>
